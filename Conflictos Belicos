@@ -1,0 +1,229 @@
+/*
+Brian Marquez Inca Roca
+Ricardo Fernandes Camaza
+Rodrigo Pimentel Villasante 
+*/
+
+create database ConflictosBelicos;
+use ConflictosBelicos
+
+create table Tipo_Comflicto (id_tipo int primary key, nombre varchar(30), regiones varchar(30), materia_prima varchar(30), razas_enfrentadas varchar(30));
+
+insert into Tipo_Comflicto(id_tipo,nombre,regiones,materia_prima,razas_enfrentadas) values(1,'Sierra Leona','Togo-Liberia','politica','nigerianos'); 
+insert into Tipo_Comflicto(id_tipo,nombre,regiones,materia_prima,razas_enfrentadas) values(2,'Bosnia',' Europa','conflicto b�lico','musulmanes'); 
+insert into Tipo_Comflicto(id_tipo,nombre,regiones,materia_prima,razas_enfrentadas) values(3,'Chechenia','Rusia','acuerdos','Ruso'); 
+insert into Tipo_Comflicto(id_tipo,nombre,regiones,materia_prima,razas_enfrentadas) values(4,'Palestina','Mediterr�neo Oriental','politica','Estado de Palestina'); 
+insert into Tipo_Comflicto(id_tipo,nombre,regiones,materia_prima,razas_enfrentadas) values(5,'CHAD ','Togo-Liberia','territorio','nigerianos'); 
+insert into Tipo_Comflicto(id_tipo,nombre,regiones,materia_prima,razas_enfrentadas) values(6,'Sierra Leona','Sud�n y Chad','Golpe de Estado ','arabes'); 
+
+
+
+create table Comflicto (codigo int primary key,nombre_causa varchar(30),fecha_ingreso datetime, fecha_salida datetime, id_tipo int, id_organizacion int,id_grupo int );
+
+insert into Comflicto (codigo,nombre_causa,fecha_ingreso,fecha_salida,id_tipo,id_organizacion,id_grupo) values (10,'Conflictos religiosos','19800101 10:30:00 AM','19881230 10:00:00 AM', 1,100,1010);
+insert into Comflicto (codigo,nombre_causa,fecha_ingreso,fecha_salida,id_tipo,id_organizacion,id_grupo) values (20,'Conflictos ideologios','19800101 10:30:00 AM','19881230 10:00:00 AM',2,101,1020);
+insert into Comflicto (codigo,nombre_causa,fecha_ingreso,fecha_salida,id_tipo,id_organizacion,id_grupo) values (30,'Conflictos filos�ficos','19800101 10:30:00 AM','19881230 10:00:00 AM',3,102,1030);
+insert into Comflicto (codigo,nombre_causa,fecha_ingreso,fecha_salida,id_tipo,id_organizacion,id_grupo) values (40,'Conflicto pol�tico','19800101 10:30:00 AM','19881230 10:00:00 AM',4,103,1040);
+insert into Comflicto (codigo,nombre_causa,fecha_ingreso,fecha_salida,id_tipo,id_organizacion,id_grupo) values (50,'Conflictos intraestatales','19800101 10:30:00 AM','19881230 10:00:00 AM',5,104,1050);
+insert into Comflicto (codigo,nombre_causa,fecha_ingreso,fecha_salida,id_tipo,id_organizacion,id_grupo) values (60,'Conflictos intraestatales II','19800101 10:30:00 AM','19881230 10:00:00 AM',6,105,1060);
+
+
+create table Comflicto_pais (codigo int, id_pais int , numero_muertos int, numero_heridos int);
+
+insert into Comflicto_pais(codigo,id_pais,numero_muertos,numero_heridos) values (10,500,5000,8965);
+insert into Comflicto_pais(codigo,id_pais,numero_muertos,numero_heridos) values (20,510,9000,8965);
+insert into Comflicto_pais(codigo,id_pais,numero_muertos,numero_heridos) values (30,520,2000,8965);
+insert into Comflicto_pais(codigo,id_pais,numero_muertos,numero_heridos) values (40,530,580,89545);
+insert into Comflicto_pais(codigo,id_pais,numero_muertos,numero_heridos) values (50,540,23000,8962);
+insert into Comflicto_pais(codigo,id_pais,numero_muertos,numero_heridos) values (60,550,23000,8962);
+
+create table Pais (id_pais int Primary Key, nombre varchar(30), ubicacion varchar(30), continente varchar(30), poblacion int);
+
+insert into Pais (id_pais,nombre,ubicacion,continente,poblacion) values (500,'Irak','Irak','Europa',850000);
+insert into Pais (id_pais,nombre,ubicacion,continente,poblacion) values (510,'Filipina','Filipina','Europa',59660000);
+insert into Pais (id_pais,nombre,ubicacion,continente,poblacion) values (520,'Bolivia','Bolivia','Arequipa',4860000);
+insert into Pais (id_pais,nombre,ubicacion,continente,poblacion) values (530,'Colombia','Colombia','Ameria',850000);
+insert into Pais (id_pais,nombre,ubicacion,continente,poblacion) values (540,'Alemania','Alemania','Europa',850000);
+insert into Pais (id_pais,nombre,ubicacion,continente,poblacion) values (550,'Francia','Francia','Europa',1500000);
+
+
+
+create table Tipo_Organizacion (id_tipo int Primary Key ,descripcion varchar(30), estado varchar(30));
+
+insert into Tipo_Organizacion(id_tipo,descripcion,estado) values (1,'terrorista radical','estado isl�mico');
+insert into Tipo_Organizacion(id_tipo,descripcion,estado) values (2,'Lucha contra el gobierno ','C�ucaso Norte');
+insert into Tipo_Organizacion(id_tipo,descripcion,estado) values (3,'politica','estado isl�mico');
+insert into Tipo_Organizacion(id_tipo,descripcion,estado) values (4,'politica ','Sudeste Asi�tico');
+insert into Tipo_Organizacion(id_tipo,descripcion,estado) values (5,'racial ',' Nigeria');
+insert into Tipo_Organizacion(id_tipo,descripcion,estado) values (6,'territorio ',' Africa');
+
+
+
+create table Organizaciones (id_organizacion int Primary Key, nombre varchar(30), dependencia varchar(30), numero_personas int, id_tipo int, id_tipo_ayuda int);
+
+insert into Organizaciones (id_organizacion,nombre,dependencia,numero_personas,id_tipo,id_tipo_ayuda) values (100,'Al','principal',20000,1,600 );
+insert into Organizaciones (id_organizacion,nombre,dependencia,numero_personas,id_tipo,id_tipo_ayuda) values (101,'Boko Haram','principal',30000,2, 601 );
+insert into Organizaciones (id_organizacion,nombre,dependencia,numero_personas,id_tipo,id_tipo_ayuda) values (102,'Jemaah Islamiyah','principal',40000,3, 602 );
+insert into Organizaciones (id_organizacion,nombre,dependencia,numero_personas,id_tipo,id_tipo_ayuda) values (103,'Emirato C�ucaso','principal',50000,4, 603 );
+insert into Organizaciones (id_organizacion,nombre,dependencia,numero_personas,id_tipo,id_tipo_ayuda) values (104,'Lashkar e Tayyiba','principal',60000,5, 604 );
+insert into Organizaciones (id_organizacion,nombre,dependencia,numero_personas,id_tipo,id_tipo_ayuda) values (105,'Lashkar e Tayyiba','principal II',60000,6, 605 );
+
+
+create table Grupos_Armados (id_grupo int primary key, nombre varchar(30), monto_bajas int);
+
+insert into Grupos_Armados (id_grupo,nombre,monto_bajas) values (1010,'Legi�n Blanca',160 );
+insert into Grupos_Armados (id_grupo,nombre,monto_bajas) values (1020,'Andecha Obrera',149);
+insert into Grupos_Armados (id_grupo,nombre,monto_bajas) values (1030,'leji', 293);
+insert into Grupos_Armados (id_grupo,nombre,monto_bajas) values (1040,'Legi�n Blanca II', 303);
+insert into Grupos_Armados (id_grupo,nombre,monto_bajas) values (1050,'NSKK',505);
+insert into Grupos_Armados (id_grupo,nombre,monto_bajas) values (1060,'NSLL',507);
+
+create table Grupo_Armado_Traficantes (id_grupo int , id_fabricante int );
+
+insert into Grupo_Armado_Traficantes(id_grupo,id_fabricante) values (1010, 4000);
+insert into Grupo_Armado_Traficantes(id_grupo,id_fabricante) values (1020, 4010);
+insert into Grupo_Armado_Traficantes(id_grupo,id_fabricante) values (1030, 4020);
+insert into Grupo_Armado_Traficantes(id_grupo,id_fabricante) values (1040, 4030);
+insert into Grupo_Armado_Traficantes(id_grupo,id_fabricante) values (1050, 4040);
+insert into Grupo_Armado_Traficantes(id_grupo,id_fabricante) values (1060, 4050);
+
+
+create table Traficantes (id_fabricante int Primary Key, nombre varchar(30), id_arma int);
+
+insert into Traficantes (id_fabricante,nombre,id_arma) values (4000,'Manuel Antonio Noriega',700);
+insert into Traficantes (id_fabricante,nombre,id_arma) values (4010,'Amado Carrillo F. ',701);
+insert into Traficantes (id_fabricante,nombre,id_arma) values (4020,'Frank Lucas',702);
+insert into Traficantes (id_fabricante,nombre,id_arma) values (4030,'Ismael Zambada Garc�a ',703);
+insert into Traficantes (id_fabricante,nombre,id_arma) values (4040,'Arellano',704);
+insert into Traficantes (id_fabricante,nombre,id_arma) values (4050,'Arellano II',705);
+
+
+create table Tipo_Ayuda (id_tipo_ayuda int Primary Key, descripcion varchar(30), estado varchar(30));
+
+insert into Tipo_Ayuda (id_tipo_ayuda,descripcion,estado) values (600,'ayuda armamentista','nuevo');
+insert into Tipo_Ayuda (id_tipo_ayuda,descripcion,estado) values (601,'ayuda armamentista','nuevo');
+insert into Tipo_Ayuda (id_tipo_ayuda,descripcion,estado) values (602,'ayuda armamentista','usado');
+insert into Tipo_Ayuda (id_tipo_ayuda,descripcion,estado) values (603,'ayuda armamentista','usado');
+insert into Tipo_Ayuda (id_tipo_ayuda,descripcion,estado) values (604,'ayuda armamentista','nuevo');
+insert into Tipo_Ayuda (id_tipo_ayuda,descripcion,estado) values (605,'ayuda armamentista','nuevo');
+
+
+
+create table Organizaciones_lider_politico (id_organizacion int,id_lider int, fecha datetime, observacion varchar(30));
+
+insert into Organizaciones_lider_politico(id_organizacion,id_lider,fecha,observacion) values (100,400,'19800101 10:30:00 AM','ninguna');
+insert into Organizaciones_lider_politico(id_organizacion,id_lider,fecha,observacion) values (101,410,'19800101 10:30:00 AM','ninguna');
+insert into Organizaciones_lider_politico(id_organizacion,id_lider,fecha,observacion) values (102,420,'19800101 10:30:00 AM','ninguna');
+insert into Organizaciones_lider_politico(id_organizacion,id_lider,fecha,observacion) values (103,430,'19800101 10:30:00 AM','ninguna');
+insert into Organizaciones_lider_politico(id_organizacion,id_lider,fecha,observacion) values (104,440,'19800101 10:30:00 AM','ninguna');
+insert into Organizaciones_lider_politico(id_organizacion,id_lider,fecha,observacion) values (105,450,'19800101 10:30:00 AM','ninguna');
+
+
+create table Diviciones (id_divicion int Primary Key, numero_barcos int , numero_aviones int , numero_buques int , id_grupo int , numero_hombres int , numero_bajas int );
+
+insert into Diviciones(id_divicion,numero_barcos,numero_aviones,numero_buques,id_grupo,numero_hombres,numero_bajas) values (6000,65,252,5010,1010,650,45);
+insert into Diviciones(id_divicion,numero_barcos,numero_aviones,numero_buques,id_grupo,numero_hombres,numero_bajas) values (6010,100,2002,5010,1020,650,45);
+insert into Diviciones(id_divicion,numero_barcos,numero_aviones,numero_buques,id_grupo,numero_hombres,numero_bajas) values (6020,265,2962,5010,1030,560,45);
+insert into Diviciones(id_divicion,numero_barcos,numero_aviones,numero_buques,id_grupo,numero_hombres,numero_bajas) values (6030,685,1352,5010,1040,650,30);
+insert into Diviciones(id_divicion,numero_barcos,numero_aviones,numero_buques,id_grupo,numero_hombres,numero_bajas) values (6040,695,252,5010,1050,6560,45);
+insert into Diviciones(id_divicion,numero_barcos,numero_aviones,numero_buques,id_grupo,numero_hombres,numero_bajas) values (6050,995,252,5010,1060,6560,75);
+
+
+
+create table Armas (id_arma int Primary Key, nombre varchar(30) , capac_destructiv int );
+
+insert into Armas(id_arma,nombre,capac_destructiv) values (700,'XK-11 ',78);
+insert into Armas(id_arma,nombre,capac_destructiv) values (701,'Ak-47 ',875);
+insert into Armas(id_arma,nombre,capac_destructiv) values (702,'Uzi ',8255);
+insert into Armas(id_arma,nombre,capac_destructiv) values (703,'Bereta xxtreme ',7557);
+insert into Armas(id_arma,nombre,capac_destructiv) values (704,'Spas 12 ',142);
+insert into Armas(id_arma,nombre,capac_destructiv) values (705,'Spas 45 ',102);
+
+
+create table Lider_Militar (id_grupo int, id_lider_militar int Primary Key , id_lider int, rango int,id_divicion int);
+
+create table Lider_Politico (id_lider int Primary Key, nombre varchar(30), descripcion_apoyo varchar(30), id_grupo int);
+
+insert into Lider_Politico(id_lider,nombre,descripcion_apoyo,id_grupo) values (400,'Walerian Cai','orador',1010);
+insert into Lider_Politico(id_lider,nombre,descripcion_apoyo,id_grupo) values (410,'Rupert Henrik','orador',1020);
+insert into Lider_Politico(id_lider,nombre,descripcion_apoyo,id_grupo) values (420,'Claus Daan','orador',1030);
+insert into Lider_Politico(id_lider,nombre,descripcion_apoyo,id_grupo) values (430,'Quique Reyes','orador',1040);
+insert into Lider_Politico(id_lider,nombre,descripcion_apoyo,id_grupo) values (440,'VICTOR HEVIA RUFO','orador',1050);
+insert into Lider_Politico(id_lider,nombre,descripcion_apoyo,id_grupo) values (450,'luis pato','orador',1060);
+
+
+alter table Comflicto
+  add constraint fk_1
+  foreign key (id_tipo)
+  references Tipo_Comflicto(id_tipo);
+
+alter table Comflicto_pais
+  add constraint fk_2
+  foreign key (codigo)
+  references Comflicto(codigo);
+
+alter table Comflicto_pais
+  add constraint fk_3
+  foreign key (id_pais)
+  references Pais(id_pais);
+ 
+alter table Comflicto
+  add constraint fk_4
+  foreign key (id_organizacion)
+  references Organizaciones(id_organizacion);
+
+ alter table Comflicto
+  add constraint fk_5
+  foreign key (id_grupo)
+  references Grupos_Armados(id_grupo);
+
+ alter table Organizaciones
+  add constraint fk_6
+  foreign key (id_tipo)
+  references Tipo_Organizacion(id_tipo);
+
+ alter table Grupo_Armado_Traficantes
+  add constraint fk_7
+  foreign key (id_grupo)
+  references Grupos_Armados(id_grupo);
+
+ alter table Grupo_Armado_Traficantes
+  add constraint fk_8
+  foreign key (id_fabricante)
+  references Traficantes(id_fabricante);
+
+  alter table Organizaciones
+  add constraint fk_9
+  foreign key (id_tipo_ayuda)
+  references Tipo_Ayuda(id_tipo_ayuda);
+
+  alter table Organizaciones_lider_politico
+  add constraint fk_10
+  foreign key (id_organizacion)
+  references Organizaciones(id_organizacion);
+
+  alter table Diviciones
+  add constraint fk_11
+  foreign key (id_grupo)
+  references Grupos_Armados(id_grupo);
+
+  alter table Traficantes
+  add constraint fk_12
+  foreign key (id_arma)
+  references Armas(id_arma);
+
+  alter table Organizaciones_lider_politico
+  add constraint fk_13
+  foreign key (id_lider)
+  references Lider_Politico(id_lider);
+
+
+  alter table Lider_Militar
+  add constraint fk_14
+  foreign key (id_grupo)
+  references Diviciones(id_divicion);
+
+  alter table Lider_Militar
+  add constraint fk_15
+  foreign key (id_grupo)
+  references Lider_Politico(id_lider);
